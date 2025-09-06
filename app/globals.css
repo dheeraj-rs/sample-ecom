@@ -1,0 +1,327 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Wood-inspired color palette */
+  --background: 0 0% 100%;
+  --foreground: 30 8% 15%;
+
+  /* Primary - Rich Walnut */
+  --primary: 25 25% 25%;
+  --primary-foreground: 0 0% 98%;
+
+  /* Secondary - Warm Oak */
+  --secondary: 35 30% 85%;
+  --secondary-foreground: 30 8% 15%;
+
+  /* Accent - Golden Honey */
+  --accent: 42 87% 65%;
+  --accent-foreground: 30 8% 15%;
+
+  /* Muted - Light Ash */
+  --muted: 210 8% 96%;
+  --muted-foreground: 215 8% 46%;
+
+  /* Card backgrounds */
+  --card: 0 0% 100%;
+  --card-foreground: 30 8% 15%;
+
+  /* Popover */
+  --popover: 0 0% 100%;
+  --popover-foreground: 30 8% 15%;
+
+  /* Border and input */
+  --border: 214 12% 88%;
+  --input: 214 12% 88%;
+  --ring: 25 25% 25%;
+
+  /* Destructive - Deep Red */
+  --destructive: 0 65% 51%;
+  --destructive-foreground: 0 0% 98%;
+
+  /* Success - Forest Green */
+  --success: 142 76% 36%;
+  --success-foreground: 0 0% 98%;
+
+  /* Warning - Amber */
+  --warning: 38 92% 50%;
+  --warning-foreground: 0 0% 98%;
+
+  /* Info - Steel Blue */
+  --info: 214 78% 51%;
+  --info-foreground: 0 0% 98%;
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 30 8% 8%;
+  --foreground: 35 15% 92%;
+
+  --primary: 42 87% 65%;
+  --primary-foreground: 30 8% 8%;
+
+  --secondary: 25 15% 18%;
+  --secondary-foreground: 35 15% 92%;
+
+  --accent: 42 87% 65%;
+  --accent-foreground: 30 8% 8%;
+
+  --muted: 25 10% 15%;
+  --muted-foreground: 215 15% 65%;
+
+  --card: 25 8% 12%;
+  --card-foreground: 35 15% 92%;
+
+  --popover: 25 8% 12%;
+  --popover-foreground: 35 15% 92%;
+
+  --border: 25 10% 20%;
+  --input: 25 10% 20%;
+  --ring: 42 87% 65%;
+
+  --destructive: 0 75% 60%;
+  --destructive-foreground: 0 0% 98%;
+
+  --success: 142 85% 45%;
+  --success-foreground: 0 0% 98%;
+
+  --warning: 38 95% 60%;
+  --warning-foreground: 0 0% 98%;
+
+  --info: 214 85% 60%;
+  --info-foreground: 0 0% 98%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/30 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/50;
+  }
+}
+
+@layer components {
+
+  /* Typography */
+  .font-heading {
+    font-family: var(--font-playfair), serif;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+  }
+
+  /* Layout helpers */
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+
+  .glass-dark {
+    @apply backdrop-blur-md bg-black/10 border border-black/20;
+  }
+
+  /* Wood texture overlay */
+  .wood-texture {
+    position: relative;
+  }
+
+  .wood-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse at 50% 20%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+      linear-gradient(45deg, rgba(160, 82, 45, 0.05) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(160, 82, 45, 0.05) 25%, transparent 25%);
+    background-size: 200px 100px, 20px 20px, 20px 20px;
+    pointer-events: none;
+  }
+
+  /* Button variants */
+  .btn-wood {
+    @apply bg-gradient-to-r from-amber-600 via-amber-700 to-amber-800 text-white hover:from-amber-700 hover:via-amber-800 hover:to-amber-900 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 ease-out;
+  }
+
+  /* Product card effects */
+  .product-card {
+    @apply relative overflow-hidden rounded-xl bg-card border border-border/50 shadow-sm hover:shadow-xl transition-all duration-500 ease-out hover:-translate-y-2;
+  }
+
+  .product-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(251, 191, 36, 0.1) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .product-card:hover::before {
+    opacity: 1;
+  }
+
+  /* Loading states */
+  .loading-shimmer {
+    @apply animate-pulse bg-gradient-to-r from-muted via-muted/70 to-muted;
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Custom focus styles */
+  .focus-visible-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
+}
+
+@layer utilities {
+
+  /* Text utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Layout utilities */
+  .safe-area-inset {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Debug utilities (remove in production) */
+  .debug-grid {
+    background-image:
+      linear-gradient(rgba(255, 0, 0, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 0, 0, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .btn-wood {
+    @apply bg-amber-900 border-2 border-white;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus visible polyfill for better accessibility */
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}
